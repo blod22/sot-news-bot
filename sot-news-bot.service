@@ -1,0 +1,19 @@
+[Unit]
+Description=Sea of Thieves RU News -> Discord
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=sotbot
+Group=sotbot
+Environment="SOT_BOT_CONFIG=/etc/sot-news-bot/bot.env"
+ExecStart=/opt/sot-news-bot/venv/bin/python /opt/sot-news-bot/sot_news_bot.py
+Restart=always
+RestartSec=5
+LimitNOFILE=65535
+RuntimeDirectory=sot-news-bot
+WorkingDirectory=/opt/sot-news-bot
+
+[Install]
+WantedBy=multi-user.target
